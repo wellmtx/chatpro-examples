@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		ul, li {
+			list-style: none;
+		}
+
+		div {
+			background-color: gray;
+			width: 100px;
+		}
+
+		div.contact {
+			cursor: pointer;
+		}
+
+		span {
+			display: block;
+			font-size: xx-large;
+		}
+
+		label {
+			display: block;
+		}
+
+		input {
+			padding: 5px;
+		}
+
+		button {
+			margin: 15px;
+		}
+
+		img {
+			width: 400px;
+		}
+	</style><!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		ul, li {
+			list-style: none;
+		}
+
+		div {
+			background-color: gray;
+			width: 100px;
+		}
+
+		div.contact {
+			cursor: pointer;
+		}
+
+		span {
+			display: block;
+			font-size: xx-large;
+		}
+
+		label {
+			display: block;
+		}
+
+		input {
+			padding: 5px;
+		}
+
+		button {
+			margin: 15px;
+		}
+
+		img {
+			width: 400px;
+		}
+	</style>
+</head>
+<body>
+	<a href="contacts.php"><button> LISTA DE CONTATOS </button></a>
+
+	<a href="getStatus.php"><button> STATUS DE CONEXÃO </button></a>
+
+	<ul data-js="contatos">
+		<li>
+			<div class="contact">
+				<span data-js="name"></span>
+				<span data-js="number"></span>
+			</div>
+		</li>
+	</ul>
+
+<form data-js="sendMessage" method="POST" action="sendMessage.php">
+	<ul>
+		<li>
+			<label>Número:</label>
+			<input type="text" name="getNumber" value="">
+		</li>
+		<li>
+			<label>Mensagem:</label>
+			<input type="text" name="mensagem" value="">
+		</li>
+		<li>
+			<label>Arquivo:</label>
+			<input type="url" name="contentUrl">
+		</li>
+		<li>
+			<button type="submit"> ENVIAR </button>
+		</li>
+	</ul>
+</form>
+
+<form method="POST" action="sendFiles.php">
+	<ul>
+		<li>
+			<label>Número:</label>
+			<input type="text" name="getNumber" value="">
+		</li>
+		<li>
+			<label>Nome do arquivo:</label>
+			<input type="text" name="nameFile" value="">
+		</li>
+		<li>
+			<label>URL do arquivo:</label>
+			<input type="url" name="contentUrl">
+		</li>
+		<li>
+			<button type="submit"> ENVIAR ARQUIVO </button>
+		</li>
+	</ul>
+</form>
+<ul data-js="qrCode">
+	<a href = "getQrCode.php"><button> GERAR QR CODE </button></a>
+</ul>
+	
+</body>
+</html>
