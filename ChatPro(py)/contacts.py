@@ -2,10 +2,10 @@
 import re
 import requests
 
-url = 'https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/contacts'
+url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts'
 
 headers = {
-  'Authorization': "eop82iy1mdf4ohbez2wlmea7n21y4d" ,
+  'Authorization': "[seuToken]" ,
   'cache-control': "no-cache"
 }
 
