@@ -1,13 +1,13 @@
 <?php
 
-$url = "https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/contacts";
+$url = "https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts";
 $ch = curl_init($url);
 
 curl_setopt_array($ch, array(
 	CURLOPT_RETURNTRANSFER => true ,
 	CURLOPT_CUSTOMREQUEST => "GET" ,
 	CURLOPT_HTTPHEADER => array (
-		"Authorization: eop82iy1mdf4ohbez2wlmea7n21y4d",
+		"Authorization: [seuToken]",
 		"cache_control: no-cache"
 	)
 ));
