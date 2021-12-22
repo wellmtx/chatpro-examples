@@ -20,8 +20,8 @@
 
 			contacts: function contacts() {
 				var contacts = new XMLHttpRequest();
-				contacts.open('GET' , 'https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/contacts');
-				contacts.setRequestHeader('Authorization', 'eop82iy1mdf4ohbez2wlmea7n21y4d');
+				contacts.open('GET' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts');
+				contacts.setRequestHeader('Authorization', '[seuToken]');
 				contacts.send();
 				console.log('carregando lista de contatos...');
 				contacts.onreadystatechange = function() {
@@ -38,8 +38,8 @@
 				var $messageText = doc.querySelector('[data-js="mensagem"]')
 				var sendTextMessage = '{ "message": "' + $messageText.value + '" ,"number": "' + $toNumber.value + '" }'
 				var sendMessage = new XMLHttpRequest();
-				sendMessage.open('POST' , 'https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/send_message');
-				sendMessage.setRequestHeader('Authorization', 'eop82iy1mdf4ohbez2wlmea7n21y4d');
+				sendMessage.open('POST' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message');
+				sendMessage.setRequestHeader('Authorization', '[seuToken]');
 				sendMessage.setRequestHeader('Content-Type', 'application/json');
 				sendMessage.send(sendTextMessage);
 				sendMessage.onreadystatechange = function() {
@@ -56,8 +56,8 @@
 				var $contentFile = doc.querySelector('[data-js="contentUrl"]')
 				var sendContentFile = '{ "caption": "' + $messageText.value + '" , "number": "' + $toNumber.value + '" , "url": "' + $contentFile.value + '" }'
 				var file = new XMLHttpRequest();
-				file.open('POST' , 'https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/send_message_file_from_url')
-				file.setRequestHeader('Authorization', 'eop82iy1mdf4ohbez2wlmea7n21y4d');
+				file.open('POST' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url')
+				file.setRequestHeader('Authorization', '[seuToken]');
 				file.setRequestHeader('Content-Type', 'application/json');
 				file.send(sendContentFile)
 				file.onreadystatechange = function() {
@@ -69,8 +69,8 @@
 
 			generateQRCode: function generateQRCode() {
 				var qrCode = new XMLHttpRequest();
-				qrCode.open('GET' , 'https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/generate_qrcode?webhook=https%3A%2F%2Fwebhook.site%2Fc08c37b6-a2e1-4dd9-8ef2-d1d2ce0889d2')
-				qrCode.setRequestHeader('Authorization', 'eop82iy1mdf4ohbez2wlmea7n21y4d');
+				qrCode.open('GET' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/generate_qrcode')
+				qrCode.setRequestHeader('Authorization', '[seuToken]');
 				qrCode.send();
 				qrCode.onreadystatechange = function() {
 					if(qrCode.readyState === 4 && qrCode.status ===  200) {
@@ -88,8 +88,8 @@
 
 			getStatus: function getStatus() {
 				var getStatus = new XMLHttpRequest();
-				getStatus.open('GET' , 'https://v4.chatpro.com.br/chatpro-qpebpshq56/api/v1/status')
-				getStatus.setRequestHeader('Authorization', 'eop82iy1mdf4ohbez2wlmea7n21y4d');
+				getStatus.open('GET' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/status')
+				getStatus.setRequestHeader('Authorization', '[seuToken]');
 				getStatus.send();
 				getStatus.onreadystatechange = function() {
 					if(getStatus.readyState === 4) {
