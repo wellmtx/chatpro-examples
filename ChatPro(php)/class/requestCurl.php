@@ -5,7 +5,7 @@ class requestCurl
     private $url;
     private $method;
     private $send;
-    private $header = array("Authorization: 8r7d2vx43ll3hm9kp07s9812tviyr3", "cache_control: no-cache");
+    private $header = array("Authorization: [seuToken]", "cache_control: no-cache");
 
     public function setUrl($url) 
     {
@@ -32,7 +32,7 @@ class requestCurl
             (
                 CURLOPT_URL => $this->url ,
                 CURLOPT_CUSTOMREQUEST => "GET" ,
-	            CURLOPT_RETURNTRANSFER => true ,
+	        CURLOPT_RETURNTRANSFER => true ,
                 CURLOPT_HTTPHEADER => $this->header
             ));
 
@@ -51,7 +51,7 @@ class requestCurl
             (
                 CURLOPT_URL => $this->url ,
                 CURLOPT_CUSTOMREQUEST => "POST" ,
-	            CURLOPT_RETURNTRANSFER => true ,
+	        CURLOPT_RETURNTRANSFER => true ,
                 CURLOPT_POSTFIELDS => $this->send ,
                 CURLOPT_HTTPHEADER => $this->header
             ));
