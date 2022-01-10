@@ -4,10 +4,10 @@ require_once('class/requestCurl.php');
 
 function sendMassiveMessages() 
 {
-    $manyContacts = array("62981554235", "62981554235");
+    $manyContacts = array();
     $mensagem = "teste";
     $sendMessages = new requestCurl();
-    $sendMessages->setUrl("https://v4.chatpro.com.br/chatpro-xbcsytl3hj/api/v1/send_message");
+    $sendMessages->setUrl("https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message");
     $sendMessages->setMethod("POST");
 
     foreach ($manyContacts as $key => $values) 
