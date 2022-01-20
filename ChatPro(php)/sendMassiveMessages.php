@@ -15,7 +15,7 @@ function sendMassiveMessages()
         $sendMessages->setSend("{ \"message\": \"{$mensagem}\", \"number\": \"{$values}\"}");
         $sendMessages->request();
 
-        sleep(5);
+        sleep(10);
 
         echo "Mensagem " . $key + 1 . " enviada! </br>";
     }
