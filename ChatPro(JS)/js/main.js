@@ -11,6 +11,7 @@
 			initEvents: function initEvents() {
 				this.getStatus();
 				this.generateQRCode();
+				setInterval(function() {message.generateQRCode()}, 15000);
 				this.contacts();
 				var $sendFileUrl = doc.querySelector('[data-js="sendFile"]')
 				var $formSendMessage = doc.querySelector('[data-js="sendMessage"]');
@@ -19,17 +20,10 @@
 			} ,
 
 			contacts: function contacts() {
-				var contacts = new XMLHttpRequest();
-				contacts.open('GET' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts');
-				contacts.setRequestHeader('Authorization', '[seuToken]');
-				contacts.send();
-				console.log('carregando lista de contatos...');
-				contacts.onreadystatechange = function() {
-					if(contacts.readyState === 4 && contacts.status === 200){
-						var data = JSON.parse(contacts.responseText);
-						message.createContacts(data);
-					}
-				}
+				this.requestAjax('https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts', 'GET', null, function(data) 
+				{
+					message.createContacts(data);
+				});
 			} ,
 
 			sendMessage: function sendMessage(e) {
@@ -37,16 +31,11 @@
 				var $toNumber = doc.querySelector('[data-js="getNumber"]')
 				var $messageText = doc.querySelector('[data-js="mensagem"]')
 				var sendTextMessage = '{ "message": "' + $messageText.value + '" ,"number": "' + $toNumber.value + '" }'
-				var sendMessage = new XMLHttpRequest();
-				sendMessage.open('POST' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message');
-				sendMessage.setRequestHeader('Authorization', '[seuToken]');
-				sendMessage.setRequestHeader('Content-Type', 'application/json');
-				sendMessage.send(sendTextMessage);
-				sendMessage.onreadystatechange = function() {
-					if(sendMessage.readyState === 4)
-						var dataMessage = JSON.parse(sendMessage.responseText)
-						console.log(dataMessage.message)		
-				}
+
+				message.requestAjax('https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message', 'POST', sendTextMessage, function(data) 
+				{
+					console.log(data);
+				});
 			} ,
 
 			sendFile: function sendFile(e) {
@@ -55,49 +44,40 @@
 				var $toNumber = doc.querySelector('[data-js="getNumber"]')
 				var $contentFile = doc.querySelector('[data-js="contentUrl"]')
 				var sendContentFile = '{ "caption": "' + $messageText.value + '" , "number": "' + $toNumber.value + '" , "url": "' + $contentFile.value + '" }'
-				var file = new XMLHttpRequest();
-				file.open('POST' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url')
-				file.setRequestHeader('Authorization', '[seuToken]');
-				file.setRequestHeader('Content-Type', 'application/json');
-				file.send(sendContentFile)
-				file.onreadystatechange = function() {
-					if(file.readyState === 4)
-						var dataFile = JSON.parse(file.responseText);
-						console.log(dataFile)
-				}
+
+				message.requestAjax('https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url', 'POST', sendContentFile, function(data) 
+				{
+					console.log(data.message);
+				});
 			} ,
 
 			generateQRCode: function generateQRCode() {
-				var qrCode = new XMLHttpRequest();
-				qrCode.open('GET' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/generate_qrcode')
-				qrCode.setRequestHeader('Authorization', '[seuToken]');
-				qrCode.send();
-				qrCode.onreadystatechange = function() {
-					if(qrCode.readyState === 4 && qrCode.status ===  200) {
-						var dataQrCode = JSON.parse(qrCode.responseText);
-						var $qr = dataQrCode.qr
-						var $img = doc.createElement('img');
-						$img.setAttribute('src' , $qr);
+				this.requestAjax('https://v4.chatpro.com.br/[EndPoint]/api/v1/generate_qrcode', 'GET', null, function(data) 
+				{
+					var qrCode = data.qr;
+
+					var $img = doc.querySelector('[data-js="imageQR"]');
+						$img.setAttribute('src' , qrCode);
 
 						var $qrCodeImage = doc.querySelector('[data-js="qrCode"]')
 
 						$qrCodeImage.appendChild($img);
-					}
-				}
+				});
 			} ,
 
 			getStatus: function getStatus() {
-				var getStatus = new XMLHttpRequest();
-				getStatus.open('GET' , 'https://v4.chatpro.com.br/[EndPoint]/api/v1/status')
-				getStatus.setRequestHeader('Authorization', '[seuToken]');
-				getStatus.send();
-				getStatus.onreadystatechange = function() {
-					if(getStatus.readyState === 4) {
-						var dataStatus = JSON.parse(getStatus.responseText)
-						var $span = doc.querySelector('[data-js="status"]')
-						$span.textContent = dataStatus.connected === true ? 'CONECTADO' : 'DESCONECTADO'
-					}
-				}
+				this.requestAjax('https://v4.chatpro.com.br/[EndPoint]/api/v1/status', 'GET', null, function(data) 
+				{
+					var $span = doc.querySelector('[data-js="status"]');
+					$span.textContent = data.connected === true ? 'CONECTADO' : 'DESCONECTADO';
+				});
+			} ,
+
+			reload: function reload() {
+				this.requestAjax('https://v4.chatpro.com.br/[EndPoint]/api/v1/reload', 'GET', null, function(data) {
+					console.log(data);
+					console.log("tentativa de reconexão!!");
+				});
 			} ,
 
 			createContacts: function createContacts(data) {
@@ -121,9 +101,20 @@
 					return $listContacts.appendChild(fragment.appendChild($li));
 				}
 				})
+			} ,
+
+			requestAjax: function requestAjax(url, method, sendJSON, func) {
+				var requestAPI = new XMLHttpRequest();
+				requestAPI.open(method, url);
+				requestAPI.setRequestHeader("Authorization", "[seuToken]");
+				requestAPI.send(sendJSON);
+				requestAPI.onreadystatechange = function() {
+					if (requestAPI.readyState === 4) {
+						var response = JSON.parse(requestAPI.responseText);
+						func(response);
+					}
+				}
 			}
-
-
 
 		}
 	})();
