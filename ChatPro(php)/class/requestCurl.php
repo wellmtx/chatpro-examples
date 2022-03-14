@@ -5,7 +5,7 @@ class requestCurl
     private $url;
     private $method;
     private $send;
-    private $header = array("Authorization: [seuToken]", "cache_control: no-cache");
+    private $header = array("Authorization: [seuToken]", "cache_control: no-cache", "Content-Type: application/json");
 
     public function setUrl($url) 
     {
