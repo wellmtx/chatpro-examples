@@ -14,7 +14,7 @@ curl_setopt_array($ch, array(
 	CURLOPT_POSTFIELDS => $payload ,
 	CURLOPT_HTTPHEADER => array (
 		"Authorization: [seuToken]",
-		"cache_control: no-cache"
+		"Content-Type: application/json"
 	)	
 ));
 
