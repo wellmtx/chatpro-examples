@@ -8,6 +8,7 @@ url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url'
 
 headers = {
   'Authorization': "[seuToken]" ,
+  'Content-Type': 'application/json',
   'cache-control': "no-cache"
 }
 
