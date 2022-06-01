@@ -13,6 +13,7 @@ curl_setopt_array($ch, array(
 	CURLOPT_POSTFIELDS => "{ \"caption\": \"$nameFile\", \"number\": \"$number\", \"url\": \"$urlFile\"}" ,
 	CURLOPT_HTTPHEADER => array (
 		"Authorization: [seuToken]",
+		"Content-Type: application/json",
 		"cache_control: no-cache"
 	))
 );
