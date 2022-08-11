@@ -18,10 +18,6 @@ curl_close($ch);
 
 $dataStatus = json_decode($responseStatus, true);
 
-if ($dataStatus['connected'] === true) {
-	echo "<span> CONECTADO </span>";
-} else {
-	echo "<span> DESCONECTADO </span";
-}
+print_r($dataStatus);
 
 ?>

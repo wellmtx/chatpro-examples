@@ -25,6 +25,6 @@ curl_close($ch);
 
 $dataFile = json_decode($responseFile, true);
 
-print_r($dataFile['message']);
+print_r($dataFile);
 
 ?>

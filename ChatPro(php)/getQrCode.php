@@ -18,12 +18,8 @@ curl_close($ch);
 
 $dataQr = json_decode($responseQr, true);
 
-$imgQr = $dataQr['qr'];
+// O QR Code vem em base64.
 
-echo "<style>";
-echo "img {";
-echo "width: 400px;";
-echo "</style>";
-echo "<img src=$imgQr>";
+$imgQr = $dataQr['qr'];
 
 ?>

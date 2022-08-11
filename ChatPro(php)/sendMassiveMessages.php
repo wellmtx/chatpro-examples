@@ -2,6 +2,11 @@
 
 require_once('class/requestCurl.php');
 
+$payload = json_encode(array(
+    "message" => "Hello World",
+    "number" => "1234567890",
+));
+
 function sendMassiveMessages() 
 {
     $manyContacts = array();
@@ -12,7 +17,7 @@ function sendMassiveMessages()
 
     foreach ($manyContacts as $key => $values) 
     {
-        $sendMessages->setSend("{ \"message\": \"{$mensagem}\", \"number\": \"{$values}\"}");
+        $sendMessages->setSend($payload);
         $sendMessages->request();
 
         sleep(10);
