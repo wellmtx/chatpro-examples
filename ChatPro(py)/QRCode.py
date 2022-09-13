@@ -1,6 +1,4 @@
-from PIL import Image
 import requests
-from io import BytesIO
 
 url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/generate_qrcode'
 

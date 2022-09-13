@@ -1,4 +1,5 @@
 import requests
+from json import dumps
 
 number = str(input('Qual o número do destinatário ? '))
 fileName = str(input('Qual o nome do arquivo ? '))
@@ -12,8 +13,12 @@ headers = {
   'cache-control': "no-cache"
 }
 
-sendData = '{ "caption": "' + fileName + '" , "number": "' + number + '" , "url": "' + fileUrl + '" }'
+payload = {
+  "caption": fileName,
+  "number": number,
+  "url": url,
+}
 
-responseFile = requests.request("POST", url, data=sendData , headers=headers)
+responseFile = requests.request("POST", url, data=dumps(payload) , headers=headers)
 
 print(responseFile)
