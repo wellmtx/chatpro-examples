@@ -35,12 +35,13 @@
         e.preventDefault();
         var $toNumber = doc.querySelector('[data-js="getNumber"]');
         var $messageText = doc.querySelector('[data-js="mensagem"]');
-        var sendTextMessage =
-          '{ "message": "' +
-          $messageText.value +
-          '" ,"number": "' +
-          $toNumber.value +
-          '" }';
+        
+        var data = {
+          message: $messageText.value,
+          number: $toNumber.value
+        }
+        
+        var sendTextMessage = JSON.stringify(data);
 
         message.requestAjax(
           "https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message",
