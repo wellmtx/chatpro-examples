@@ -1,6 +1,6 @@
 <?php
 
-$url = "https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts";
+$url = "https://v5.chatpro.com.br/[EndPoint]/api/v1/contacts";
 $ch = curl_init($url);
 
 curl_setopt_array($ch, array(
