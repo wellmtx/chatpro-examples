@@ -8,7 +8,7 @@ $payload = json_encode(array(
 $ch = curl_init();
 
 curl_setopt_array($ch, array(
-	CURLOPT_URL => 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url' ,
+	CURLOPT_URL => 'https://v5.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url' ,
 	CURLOPT_RETURNTRANSFER => true ,
 	CURLOPT_CUSTOMREQUEST => "POST" ,
 	CURLOPT_POSTFIELDS => $payload ,
