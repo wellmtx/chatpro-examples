@@ -22,7 +22,7 @@
 
       contacts: function contacts() {
         this.requestAjax(
-          "https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts",
+          "https://v5.chatpro.com.br/[EndPoint]/api/v1/contacts",
           "GET",
           null,
           function (data) {
@@ -44,7 +44,7 @@
         var sendTextMessage = JSON.stringify(data);
 
         message.requestAjax(
-          "https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message",
+          "https://v5.chatpro.com.br/[EndPoint]/api/v1/send_message",
           "POST",
           sendTextMessage,
           function (data) {
@@ -66,7 +66,7 @@
         };
 
         message.requestAjax(
-          "https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url",
+          "https://v5.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url",
           "POST",
           JSON.stringify(payload),
           function (data) {
@@ -77,7 +77,7 @@
 
       generateQRCode: function generateQRCode() {
         this.requestAjax(
-          "https://v4.chatpro.com.br/[EndPoint]/api/v1/generate_qrcode",
+          "https://v5.chatpro.com.br/[EndPoint]/api/v1/generate_qrcode",
           "GET",
           null,
           function (data) {
@@ -95,7 +95,7 @@
 
       getStatus: function getStatus() {
         this.requestAjax(
-          "https://v4.chatpro.com.br/[EndPoint]/api/v1/status",
+          "https://v5.chatpro.com.br/[EndPoint]/api/v1/status",
           "GET",
           null,
           function (data) {
@@ -108,7 +108,7 @@
 
       reload: function reload() {
         this.requestAjax(
-          "https://v4.chatpro.com.br/[EndPoint]/api/v1/reload",
+          "https://v5.chatpro.com.br/[EndPoint]/api/v1/reload",
           "GET",
           null,
           function (data) {
