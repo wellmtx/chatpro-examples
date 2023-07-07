@@ -1,15 +1,20 @@
 import requests
 
-url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/status'
+code = 'chatpro-xxxxxx'
+token = 'token'
+
+url = f'https://v5.chatpro.com.br/{code}/api/v1/status'
 
 headers = {
-  'Authorization': "[seuToken]" ,
+  'Authorization': token ,
   'cache-control': "no-cache"
 }
 
 statusResponse = requests.get(url , headers=headers)
 
 connectionStatus = statusResponse.json()
+
+print(connectionStatus)
 
 if connectionStatus["connected"]:
   print('Você está CONECTADO!')

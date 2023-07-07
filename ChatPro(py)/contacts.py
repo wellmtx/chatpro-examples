@@ -2,10 +2,13 @@
 import re
 import requests
 
-url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/contacts'
+code = 'chatpro-xxxxxx'
+token = 'token'
+
+url = f'https://v5.chatpro.com.br/{code}/api/v1/contacts'
 
 headers = {
-  'Authorization': "[seuToken]" ,
+  'Authorization': token ,
   'cache-control': "no-cache"
 }
 
@@ -14,11 +17,13 @@ contactsResponse = requests.get(url, headers=headers)
 contacts = contactsResponse.json()
 
 def contactsList():
-  for contact in range(len(contacts)):
-    if contacts[contact]["Name"] == '':
+  for contact in contacts:
+
+    if contact["Name"] == '':
       continue
-    number = re.sub('\D', '' , contacts[contact]["Jid"])
-    print( f'Nome: {contacts[contact]["Name"]}' )
+      
+    number = re.sub('\D', '' , contact["Jid"])
+    print( f'Nome: {contact["Name"]}' )
     print( f'Número: {number}')
 
 

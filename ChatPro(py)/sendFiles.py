@@ -1,14 +1,17 @@
 import requests
 from json import dumps
 
-number = str(input('Qual o número do destinatário ? '))
-fileName = str(input('Qual o nome do arquivo ? '))
-fileUrl = str(input('Qual o link do arquivo ? '))
+number = 'Número de destino'
+fileName = 'nome da imagem'
+fileUrl = 'https://urlimagem/imagem.png'
 
-url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message_file_from_url'
+code = 'chatpro-xxxxxx'
+token = 'token'
+
+url = f'https://v5.chatpro.com.br/{code}/api/v1/send_message_file_from_url'
 
 headers = {
-  'Authorization': "[seuToken]" ,
+  'Authorization': token,
   'Content-Type': 'application/json',
   'cache-control': "no-cache"
 }

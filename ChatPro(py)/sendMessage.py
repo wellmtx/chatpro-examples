@@ -1,11 +1,14 @@
 import requests
 from json import dumps
 
-sendToNumber = str(input('Número do destinatário: '))
+sendToNumber = 'Número de destino'
 
-textMessage = str(input('Escreva sua mensagem: '))
+textMessage = 'Mensagem'
 
-url = 'https://v4.chatpro.com.br/[EndPoint]/api/v1/send_message'
+code = 'chatpro-xxxxxx'
+token = 'token'
+
+url = f'https://v5.chatpro.com.br/{code}/api/v1/send_message'
 
 payload = {
   "message": textMessage,
@@ -13,7 +16,8 @@ payload = {
 }
 
 headers = {
-  'Authorization': "[seuToken]" ,
+  'Authorization': token,
+  'Content-Type': "application/json",
   'cache-control': "no-cache"
 }
 
